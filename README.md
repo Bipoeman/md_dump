@@ -127,4 +127,85 @@
 - **POSIX Threads and Multithreading**
     - often referred to as pthreads.
     - a standardized threading library for creating and managing threads in a multi-threaded program.
-    
+- **Baic GTK**
+    - What is GTK
+        - Muli-platform toolkit for GUI
+    - GTK Version
+        - GTK 2 Stable
+        - GTK 3 Under development more features
+    - Header file `#include<gtk/gtk.h>`
+    - Basic Command
+        - `gtk_init(&argc,&argv)`
+        - `gtk_window_new()`
+        - `gtk_widget_show(win)`
+        - `gtk_main()`
+    - Button and More
+        - `gtk_button_new_with_label(label)`
+        - `gtk_container_add(GTK_CONTAINER(win),btn)`
+        - `gtk_widget_show_all(win)` 
+        - `gtk_label_set_text(GTK_LABEL(ptr),buffer)`
+        - `gtk_table_attach_default(GTK_TABLE(tbl),lbl)`
+        - `g_signal_connect_(chk,"toggled",G_CALLBACK(check_toggle),NULL)`
+    - List stores
+        - Text combo boxes
+            ``` C
+            GtkWidget *comb = gtk_combo_box_text_new (); // new empty combo box
+            gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (comb), "Option 1");
+            gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (comb), "Option 2");
+            gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (comb), "Option 3");
+            gtk_combo_box_set_active (GTK_COMBO_BOX (comb), 0);
+
+            int sel = gtk_combo_box_get_active (GTK_COMBO_BOX (comb)); // Read currently selected item
+
+            ```
+        - Combo Callback
+            ```C
+            void combo_changed (GtkWidget *wid, gpointer ptr)
+            {
+                int sel = gtk_combo_box_get_active (GTK_COMBO_BOX (wid));
+                char *selected = gtk_combo_box_text_get_active_text (
+                GTK_COMBO_BOX_TEXT (wid));
+                printf ("The value of the combo is %d %s\n", sel, selected);
+            }
+             g_signal_connect (comb, "changed", G_CALLBACK (combo_changed), NULL);
+            ```
+    - Menus
+        - Menu bars
+            - `GtkWidget *mbar = gtk_menu_bar_new ()`
+        - Pop-up Menus
+            ```C
+            //Handler to connect it to the clicked signal on a button.
+            void button_popup (GtkWidget *wid, gpointer ptr)
+            {
+                GtkWidget *f_menu = gtk_menu_new ();
+                GtkWidget *quit_mi = gtk_menu_item_new_with_label ("Quit");
+                gtk_menu_shell_append (GTK_MENU_SHELL (f_menu), quit_mi);
+                g_signal_connect (quit_mi, "activate", G_CALLBACK (end_program),
+                NULL);
+                gtk_widget_show_all (f_menu);
+                gtk_menu_popup (GTK_MENU (f_menu), NULL, NULL, NULL, NULL, 1,
+                gtk_get_current_event_time ());
+            }
+            ```
+    - Dialogs
+        ```C
+        // This can be connected to `clicked` signal with g_signal_connect
+        void open_dialog (GtkWidget *wid, gpointer ptr)
+        {
+            GtkWidget *dlg = gtk_dialog_new_with_buttons ("My dialog",
+            GTK_WINDOW (ptr),
+            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+            "Cancel", 0, "OK", 1, NULL);
+            int result = gtk_dialog_run (GTK_DIALOG (dlg));
+            gtk_widget_destroy (dlg);
+            printf ("Return code = %d\n");
+        }
+        ```
+## Review
+- Pro
+    - Color coded code easy to read
+    - Easy to understand language
+    - Clear Explaination
+- Cons
+    - No online Repositry
+    - No Code + Result Summary
