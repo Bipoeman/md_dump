@@ -6,6 +6,9 @@
     - Some recommended / free books for learning C.
     - Source Code Compilation, Cross-Compilation Process.
     - C/C++ Toolchains and Open Source IDEs.
+- **Compiling**
+    - `gcc = gcc C compiler`
+    - `gcc -o myprog hello.c` create an executable output file called myprog and hello.c is input source code.
 - **Code Comments**
     - Single-line comments: // ....
     - Multple-line comments: /* ... */
@@ -18,6 +21,7 @@
         - 'double' represents double-precision floating-point numbers.
         - 'bool' (via #include `<stdbool.h>`) represents boolean values ('true' or 'false').
         - '_Bool' (C99's boolean type)
+        - `'unsigned char'` declares a variable which can hold values from 0 to 255.
     - Derived Data Types
         - Arrays, structures, unions
         - Enumerated data types (the 'enum' keyword)
@@ -47,6 +51,7 @@
     - Declaration vs. Definition
     - A declaration introduces an identifier to the compiler and informs it about the data type and name of the identifier.
     - A definition creates the actual instance of an identifier in memory. It allocates memory for variables and provides the implementation for functions.
+    - Global & local variables
 - **Operators**
     - Arithmetic Operators: +, -, *, /, %, ++, --
     - Relational Operators: ==, !=, >, <,>=, <= - Logical Operators: &&, ||, ! 
@@ -71,8 +76,19 @@
     - A string is a sequence of characters stored in an array that represents text.
     - terminated by a null character ('\0').
     - accessible by a (char *) pointer.
+    - `string terminator` = String in C always end with a byte set to 0
+    - `mystring[]` declaresd as as array often chars
+- **String library**
+    - `Using the C string library to simplify common opearations on strings`
+    - `<string.h> : strcpy() , strcat() , strlen() , strcmp() , strncmp()`
+- **User input**
+    - `sscanf` reads values from string
+    - `scanf` reads values directly from the console
+    - `fgets` 3 arguments : buffer store input : maximum number of byte : where to read from (stdin = read from the console)
 - **Array: 1D and 2D**
     - llection of elements of the same data type, stored in contiguous memory locations.
+    - `Relationship between pointers and arrays` = Can use pointer to access the address in elements of the array.
+    - `Elements in arrey use adjacent address`
 - **Structs (short for structures)**
     - a composite data type that allows you to group together variables of different data types under a single name.
 - **Union**
@@ -88,11 +104,16 @@
     - Iteration Statements/Loops: for, while, do-while
     - Selection Statements: if, if-else, switch-case
     - Assignment Statements
+    - `Leaving a loop early : break`
 - **Functions**
     - Variable arguments of a function
+    - `Build and calling a function`
+    - `Returning the value of a function`
 - **Pointers**
     - Pointer Arithmetics
     - Function Pointers and Parameters
+    - `Name are pointers` = The name of an array or a string is just a pointer to the frist element of the array or string.
+- **Header files and the preprocessor**
 - **C Preprocessor Directives and Macros**
     - #include <...>: include header files.
     - #define
@@ -112,6 +133,7 @@
         - fprintf(), fscanf()
         - fputc(), fgetc(), fgets(), fputs()
         - fwrite(), fread(), feof(), fseek(), rewind()
+        - `file access mode : rb+ , wb+ , ab+`
     - Other standard C libraries:
         - `<stdlib.h>` provides functions for various file operations.
         - `<unistd.h>` (Unix Standard Library) provides functions for low-level file operations.
